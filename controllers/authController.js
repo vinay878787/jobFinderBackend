@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const Register = async (req, res, next) => {
   try {
+    console.log(req.body);
     const { name, email, phone, password } = req.body;
     //  validations
     //  1. all values must come to api(zod)
@@ -50,6 +51,7 @@ const Login = async (req, res, next) => {
     res.json({
       message: "User logged in",
       name: userDetails.name,
+      id:userDetails._id,
       token: token,
     });
   } catch (error) {

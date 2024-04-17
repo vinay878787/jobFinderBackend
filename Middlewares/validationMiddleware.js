@@ -9,7 +9,6 @@ const validate = (schema) => async (req, res, next) => {
 
       // In the context of Zod's parseAsync method, parsing refers to the process of converting raw input data into a structured format based on the defined schema. Here's what it entails:
       console.log("parse.body", parseBody);
-      req.body = parseBody;
       next();
     }
   } catch (err) {

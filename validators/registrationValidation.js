@@ -3,22 +3,22 @@ const registrationValidation = z.object({
   name: z
     .string({ required_error: "Name is required" })
     .trim()
-    .min(3, { message: "minimum 3 characters required" }),
+    .min(3, { message: "minimum 3 characters required for name" }),
   email: z
     .string({ required_error: "email is required" })
     .trim()
-    .min(5, { message: "minimum 5 characters required" }),
+    .min(5, { message: "minimum 5 characters required for email" }),
 
   phone: z
-    .string({ required_error: "phone number is required" })
+    .string()
     .trim()
-    .min(10, { message: "minimum 10 characters required" })
-    .max(20, { message: "max 15 characters allowed" }),
+    .min(10, { message: "minimum 10 characters required for phone number" })
+    .max(20, { message: "max 15 characters allowed for phone number" }),
 
   password: z
     .string({ required_error: "password is required" })
-    .min(5, { message: "minimum 5 characters required" })
-    .max(30, { message: "maximum 30 characters allowed" }),
+    .min(5, { message: "minimum 5 characters required for password" })
+    .max(30, { message: "maximum 30 characters allowed for password" }),
 });
 
 module.exports = registrationValidation;

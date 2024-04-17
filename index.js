@@ -2,17 +2,22 @@ const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const db = require("./utils/db");
 const authRouter = require("./routes/auth");
 const jobRouter = require("./routes/job");
 const errorMiddleware = require("./Middlewares/errorMiddleware");
-
+const corsOptions = {
+  origin: "http://localhost:5173",
+  optionsSuccessStatus:200
+};
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors(corsOptions));
 app.use("/api/auth/", authRouter);
-app.use("/api/",jobRouter);
+app.use("/api/", jobRouter);
 app.use("/*", (req, res, next) => {
   res.status(404).json({ message: "page not found" });
   next();

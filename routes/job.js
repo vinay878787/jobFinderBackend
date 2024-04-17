@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/create",verifyToken,validate(jobValidation),jobController.createJob);
 router.get("/details/:jobId",jobController.getJobDetailsById);
-router.post("/edit/:jobId",verifyToken,validate(jobValidation),jobController.updateJobDetails);
+router.put("/edit/:jobId",verifyToken,validate(jobValidation),jobController.updateJobDetails);
 router.get("/all",jobController.getAllJobs);
 
 
