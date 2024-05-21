@@ -9,7 +9,7 @@ const authRouter = require("./routes/auth");
 const jobRouter = require("./routes/job");
 const errorMiddleware = require("./Middlewares/errorMiddleware");
 const corsOptions = {
-  origin: "https://job-finder-frontend-beige.vercel.app/",
+  origin: "*",
   optionsSuccessStatus:200
 };
 app.use(express.json());
