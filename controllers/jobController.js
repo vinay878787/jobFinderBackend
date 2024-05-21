@@ -4,7 +4,7 @@ const getAllJobs = async (req, res, next) => {
   try {
     const title = req.query.title || "";
     const skills = req.query.skills;
-    console.log("title",title, "skills",skills);
+    console.log("title", title, "skills", skills);
     let filter = {};
     let formattedSkills;
     if (skills) {
@@ -35,10 +35,10 @@ const getAllJobs = async (req, res, next) => {
         company: 1,
         jobType: 1,
         jobTitle: 1,
-        jobStyle:1
+        jobStyle: 1,
       }
     );
-    console.log("job List : ",jobList);
+    console.log("job List : ", jobList);
     res.status(200).json({ message: jobList });
   } catch (error) {
     next(error);
@@ -73,39 +73,42 @@ const getJobDetailsById = async (req, res, next) => {
 const updateJobDetails = async (req, res, next) => {
   try {
     const jobId = req.params.jobId;
+    console.log("JOB ID FROM EDIT JOB", jobId);
     const {
-      companyName,
-      title,
-      jobType,
+      company,
+      logo,
+      jobTitle,
       salary,
+      jobType,
       jobStyle,
       location,
-      jobDescription,
+      description,
       about,
       skills,
       additionalInformation,
-      duration,
     } = req.body;
 
-    const updateJobDetails = await Job.updateOne(
-      { _id: jobId },
+    const updatedJobDetails = await Job.findByIdAndUpdate(
+      jobId,
       {
-        $set: {
-          companyName,
-          title,
-          jobType,
-          salary,
-          jobStyle,
-          location,
-          jobDescription,
-          about,
-          skills,
-          additionalInformation,
-          duration,
-        },
-      }
+        company,
+        logo,
+        jobTitle,
+        salary,
+        jobType,
+        jobStyle,
+        location,
+        description,
+        about,
+        skills,
+        additionalInformation,
+      },
+      { new: true }
     );
-    res.status(200).json({ message: "Job details updated successfully" });
+    console.log(updatedJobDetails);
+    res
+      .status(200)
+      .json({ message: "Job details updated successfully", updatedJobDetails });
   } catch (error) {
     next(error);
   }

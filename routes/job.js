@@ -10,7 +10,6 @@ router.get("/details/:jobId",jobController.getJobDetailsById);
 router.put("/edit/:jobId",verifyToken,validate(jobValidation),jobController.updateJobDetails);
 router.get("/all",jobController.getAllJobs);
 
-
 module.exports = router;
 
 // create❌
